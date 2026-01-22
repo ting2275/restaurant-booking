@@ -1,0 +1,140 @@
+@use './variables' as *;
+
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+@mixin font-style($font-size, $line-height, $font-weight, $letter-spacing: normal) {
+  font-family: $font-family-sans;
+  font-size: $font-size;
+  line-height: $line-height;
+  font-weight: $font-weight;
+  letter-spacing: $letter-spacing;
+}
+
+$headline1: (
+  font-size: 40px,
+  line-height: 125%,
+  font-weight: $font-weight-bold
+);
+
+$headline2: (
+  font-size: 32px,
+  line-height: 125%,
+  font-weight: $font-weight-bold
+);
+
+$headline3: (
+  font-size: 28px,
+  line-height: 125%,
+  font-weight: $font-weight-bold
+);
+
+$headline4: (
+  font-size: 24px,
+  line-height: 140%,
+  font-weight: $font-weight-bold
+);
+
+$headline5: (
+  font-size: 20px,
+  line-height: 140%,
+  font-weight: $font-weight-medium
+);
+
+$title: (
+  font-size: 16px,
+  line-height: 140%,
+  font-weight: $font-weight-bold,
+  letter-spacing: calc($font-size * 0.16)
+);
+
+$subtitle: (
+  font-size: 14px,
+  line-height: 140%,
+  font-weight: $font-weight-medium,
+  letter-spacing: calc($font-size * 0.16)
+);
+
+$body1: (
+  font-size: 16px,
+  line-height: 140%,
+  font-weight: $font-weight-regular,
+  letter-spacing: calc($font-size * 0.16)
+);
+
+$body2: (
+  font-size: 14px,
+  line-height: 140%,
+  font-weight: $font-weight-regular,
+  letter-spacing: calc($font-size * 0.16)
+);
+
+$caption1: (
+  font-size: 12px,
+  line-height: 140%,
+  font-weight: $font-weight-bold,
+  letter-spacing: calc($font-size * 0.16)
+);
+
+$caption2: (
+  font-size: 12px,
+  line-height: 140%,
+  font-weight: $font-weight-regular,
+  letter-spacing: calc($font-size * 0.16)
+);
+
+$small: (
+  font-size: 11px,
+  line-height: 140%,
+  font-weight: $font-weight-regular,
+  letter-spacing: calc($font-size * 0.16)
+);
+
+h1, .headline1 {
+  @include font-style(map-get($headline1, font-size), map-get($headline1, line-height), map-get($headline1, font-weight));
+}
+
+h2, .headline2 {
+  @include font-style(map-get($headline2, font-size), map-get($headline2, line-height), map-get($headline2, font-weight));
+}
+
+h3, .headline3 {
+  @include font-style(map-get($headline3, font-size), map-get($headline3, line-height), map-get($headline3, font-weight));
+}
+
+h4, .headline4 {
+  @include font-style(map-get($headline4, font-size), map-get($headline4, line-height), map-get($headline4, font-weight));
+}
+
+h5, .headline5 {
+  @include font-style(map-get($headline5, font-size), map-get($headline5, line-height), map-get($headline5, font-weight));
+}
+
+.title {
+  @include font-style(map-get($title, font-size), map-get($title, line-height), map-get($title, font-weight), map-get($title, letter-spacing));
+}
+
+.subtitle {
+  @include font-style(map-get($subtitle, font-size), map-get($subtitle, line-height), map-get($subtitle, font-weight), map-get($subtitle, letter-spacing));
+}
+
+.body1 {
+  @include font-style(map-get($body1, font-size), map-get($body1, line-height), map-get($body1, font-weight), map-get($body1, letter-spacing));
+}
+
+.body2 {
+  @include font-style(map-get($body2, font-size), map-get($body2, line-height), map-get($body2, font-weight), map-get($body2, letter-spacing));
+}
+
+.caption {
+  @include font-style(map-get($caption2, font-size), map-get($caption2, line-height), map-get($caption2, font-weight), map-get($caption2, letter-spacing));
+}
+
+.caption1 {
+  @include font-style(map-get($caption1, font-size), map-get($caption1, line-height), map-get($caption1, font-weight), map-get($caption1, letter-spacing));
+}
+
+.small {
+  @include font-style(map-get($small, font-size), map-get($small, line-height), map-get($small, font-weight), map-get($small, letter-spacing));
+}

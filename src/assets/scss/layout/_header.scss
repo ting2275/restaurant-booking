@@ -1,0 +1,54 @@
+@use '../shared/index' as *;
+
+header {
+  background-color: $secondary;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid $black-500;
+}
+
+.header-menu {
+  display: flex;
+  gap: 16px;
+  h1 {
+    @extend h5;
+    color: $primary;
+  }
+  .toggle-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.header-notify {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  .notify-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+  }
+  .shake {
+    animation: shake-delay 0.5s ease-in-out 3;
+  }
+}
+
+.pop-up {
+  .service-info {
+    display: flex;
+    flex-direction: column;
+    > div {
+      margin: 10px 0;
+    }
+    img {
+      width: 24px;
+      height: 24px;
+      margin-right: 5px;
+    }
+  }
+}

@@ -1,0 +1,123 @@
+@use '../../shared/index' as *;
+
+.v-list-item {
+  background: white ;
+  opacity: 1 !important;
+
+  &:hover {
+    background: $black-300 !important;
+  }
+
+  &--active {
+    background: white !important;
+  }
+
+  &:hover > .v-list-item__overlay,
+  &:focus-visible > .v-list-item__overlay,
+  &--active > .v-list-item__overlay,
+  &[aria-haspopup=menu][aria-expanded=true] > .v-list-item__overlay {
+    opacity: 0 !important;
+  }
+}
+
+.v-field {
+  background-color: white;
+  border: 1px solid #CCCCCC;
+  border-radius: 8px;
+
+  &.v-field--active.v-field--appended.v-field--center-affix.v-field--dirty.v-field--no-label.v-field--variant-filled.v-theme--light.v-locale--is-ltr {
+    padding: 0;
+  }
+
+  &--variant-filled .v-field__overlay {
+    background-color: white;
+    opacity: 0 !important;
+  }
+
+  &--variant-filled .v-field__outline::after,
+  &--variant-underlined .v-field__outline::after,
+  &--variant-filled .v-field__outline::before,
+  &--variant-underlined .v-field__outline::before {
+    border: none;
+  }
+}
+
+.mdi-menu-down {
+  background-image: url(/src/assets/images/icons/down-arrow.svg);
+  background-size: 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0 14px 0 20px;
+}
+
+input {
+  border: none;
+  border-radius: 8px;
+}
+
+.v-field__input {
+  border: none;
+  border-radius: 0 8px 8px 0;
+  height: 40px;
+  min-height: 0;
+  justify-content: center;
+  align-self: center;
+}
+
+.v-field__field {
+  height: 40px;
+  width: auto;
+  min-height: 0;
+}
+
+.v-phone-input .v-phone-input__country__input.v-input:not(.v-autocomplete.v-phone-input--focused) .v-field {
+  min-height: 0;
+  padding: 0;
+}
+
+.v-phone-input input::placeholder {
+  color: $placeholder-color;
+  opacity: 1 ;
+}
+.country-placeholder::placeholder {
+  color: $placeholder-color;
+  opacity: 1;
+}
+
+.v-phone-input .v-phone-input__country__input.v-input .v-field .v-field__input {
+  min-height: 0;
+  padding: 0;
+}
+
+.v-phone-input__country__icon.fi {
+  min-width: 24px;
+  width: 24px;
+  padding: 0;
+  margin: 0 16px 0 40px;
+}
+
+.v-text-field .v-field--no-label input,
+.v-text-field .v-field--active input {
+  padding: 0 16px;
+  font-size: 14px;
+}
+
+.v-text-field .v-field--no-label input {
+  color: $black-900;
+  opacity: 1;
+}
+
+.v-messages__message {
+  font-size: 12px;
+  color: red;
+  padding: 0;
+  margin: 0;
+}
+
+.v-input__details {
+  padding: 0;
+}
+
+.v-field.v-field--active.v-field--appended.v-field--center-affix.v-field--dirty.v-field--no-label.v-field--variant-filled.v-theme--light.v-locale--is-ltr {
+  border-right: none;
+}

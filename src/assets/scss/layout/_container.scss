@@ -1,0 +1,94 @@
+@use '../shared/index' as *;
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: calc(100dvh - #{$top-bar-height});
+  main {
+    flex-grow: 1;
+    padding: $content-wrapper-padding;
+    overflow: hidden;
+    overflow-y: auto;
+    @include custom-scrollbar;
+  }
+  .fullWidth-notify {
+    width: 100dvw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: $notify-height;
+    padding: 10px 0;
+    color: #fff;
+    background-color: $primary;
+    @extend .subtitle;
+    .link {
+      color: #fff;
+      text-decoration: none;
+      &:hover, &:focus {
+        color: #fff;
+      }
+    }
+  }
+}
+
+.main-box {
+  // 使分頁置底
+  .height-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: calc(100dvh - 112px);
+  }
+  .top-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 16px 0;
+    .filter-box {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex: 1;
+      .input-group {
+        margin: 0;
+      }
+      .range-picker-box {
+        width: 100%;
+        max-width: 250px;
+        @include responsive('md', 'max', 'portrait') {
+          width: 56px;
+        }
+      }
+    }
+  }
+  // .list-box {
+  //   border-radius: 8px;
+  //   border: 1px solid $black-500;
+  //   margin: 0 0 24px 0;
+  //   .list-head, .list-content {
+  //     display: grid;
+  //     grid-template-columns: 1fr 0.5fr 1fr 1.5fr 0.5fr 1fr 1fr;
+  //     gap: 6px;
+  //     align-items: center;
+  //     justify-items: center;
+  //     text-align: center;
+  //     @extend .body2;
+  //   }
+  //   .list-head {
+  //     padding: 8px 24px;
+  //     border-radius: 8px 8px 0 0;
+  //     background-color: $primary;
+  //     color: #ffffff;
+  //   }
+  //   .list-content {
+  //     padding: 12px 24px;
+  //     min-height: 64px;
+  //     background-color: #ffffff;
+  //     color: $black-900;
+  //     cursor: pointer;
+  //     &:last-child {
+  //       border-radius: 0 0 8px 8px;
+  //     }
+  //   }
+  // }
+}

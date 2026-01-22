@@ -1,0 +1,55 @@
+@use '../base/variables' as *;
+
+@mixin custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: $black-500 transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $black-500;
+    border-radius: 16px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: $black-600;
+  }
+}
+
+@mixin autofill($background-color: #fff, $text-color: $black-900) {
+  &:-webkit-autofill {
+    appearance: none;
+    background-color: $background-color !important;
+    color: $text-color !important;
+    box-shadow: 0 0 0px 1000px white inset !important;
+  }
+  &:focus:-webkit-autofill {
+    appearance: none;
+    background-color: $background-color !important;
+    color: $text-color !important;
+    box-shadow: 0 0 0px 1000px white inset !important;
+  }
+}
+
+// Mixin: 設置表單元素的 placeholder 顏色
+// @param {Color} $color - 設置 placeholder 的顏色（默認為 $placeholder-color）
+@mixin placeholderColor($color: $placeholder-color) {
+  &::-webkit-input-placeholder {
+    color: $color !important;
+  }
+  &::-moz-placeholder {
+    color: $color !important;
+  }
+  &:-ms-input-placeholder {
+    color: $color !important;
+  }
+  &::placeholder {
+    color: $color !important;
+  }
+}

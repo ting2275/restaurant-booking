@@ -1,0 +1,37 @@
+@use '../../shared/index' as *;
+
+.main-box {
+  .top-box {
+    .filter-box {
+      .dropdown-status-box {
+        width: 124px;
+        .control {
+          width: 100% !important;
+        }
+      }
+    }
+    .total-box {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      > div {
+        display: flex;
+        align-items: center;
+        img {
+          margin: 0 4px 0 0;
+        }
+        p {
+          @extend .body2;
+          span {
+            color: $primary;
+          }
+        }
+      }
+    }
+  }
+}
+.booking-content {
+  button {
+    pointer-events: none;
+  }
+}

@@ -1,0 +1,71 @@
+@use '../../shared/index' as *;
+
+.booking {
+  &-overview {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: $black-900;
+    @extend .body2;
+  }
+  &-status-total {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+  &-search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    // width: 340px;
+  }
+  &-reserve-total {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: flex-end;
+    // width: 250px;
+  }
+}
+
+.status {
+  &-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  &-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    &.orange {
+      background-color: $primary-variant;
+    }
+    &.blue {
+      background-color: $accent-2;
+    }
+    &.green {
+      background-color: $accent-1;
+    }
+  }
+  &-count {
+    @extend .body2;
+  }
+}
+
+.datepicker-button-box {
+  max-width: 180px;
+}
+
+.reserve {
+  &-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    .highlight {
+      color: $primary;
+      @extend .subtitle;
+    }
+  }
+}

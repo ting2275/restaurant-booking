@@ -1,0 +1,31 @@
+@use '../../shared/index' as *;
+
+.btn {
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 40px;
+  gap: 8px;
+  border-radius: 8px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 140%;
+  letter-spacing: 0.16em;
+  white-space: nowrap;
+
+  &-sm {
+    padding: 8px 24px;
+  }
+  &-md {
+    width: 196px;
+    height: 40px;
+    // padding: 10px 0px;
+  }
+  &-lg {
+    width: 100%;
+  }
+}

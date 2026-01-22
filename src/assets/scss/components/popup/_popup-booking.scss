@@ -1,0 +1,60 @@
+@use '../../shared/index' as *;
+
+.pop-up {
+  .pop-up-card {
+    &.pop-up-card-plain {
+      width: 560px;
+      height: 558px;
+      .pop-up-content {
+        padding: 14px 24px;
+        max-height: 100%;
+        .row {
+          display: grid;
+          gap: 24px;
+          &.row-people {
+            grid-template-columns: 1fr 1fr 1fr;
+          }
+          &.row-name {
+            grid-template-columns: 1fr 1fr;
+          }
+        }
+        label {
+          display: block;
+          margin: 24px 0 16px 0;
+        }
+        .input-group {
+          margin-bottom: 0;
+        }
+        // .datepicker-input-box {
+        //   &:disabled {
+        //     border: 1px solid $black-500;
+        //     background-color: #f1f1f1;
+        //     color: $black-900;
+        //   }
+        // }
+        textarea {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid $black-500;
+          border-radius: 8px;
+          font-size: 14px;
+          outline: none;
+          color: $black-900;
+          &:disabled {
+            background-color: $black-400;
+          }
+        }
+      }
+      .pop-up-footer {
+        padding: 16px 24px;
+        margin: 0;
+        .buttons-group {
+          width: 100%;
+          .btn {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

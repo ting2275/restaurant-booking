@@ -1,0 +1,75 @@
+@use '../../shared/index' as *;
+
+.btn {
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 40px;
+  gap: 8px;
+  border-radius: 8px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 140%;
+  letter-spacing: 0.16em;
+  white-space: nowrap;
+  &-sm {
+    padding: 8px 24px;
+  }
+  &-md {
+    width: 196px;
+    height: 40px;
+    // padding: 10px 0px;
+  }
+  &-lg {
+    width: 100%;
+  }
+  &-primary-variant {
+    /* 新增 primary-variant 狀態 */
+    background-color: $primary-variant;
+    color: white;
+  }
+
+  &-secondary {
+    /* 新增 secondary 狀態 */
+    background-color: $secondary;
+    color: $primary;
+  }
+  &-check {
+    background-color: $primary;
+    color: white;
+  }
+  &:disabled,
+  &-disabled {
+    background-color: $black-500;
+    color: white;
+    cursor: not-allowed;
+  }
+  &-not-open {
+    &:disabled {
+      background-color: $black-400;
+      color: $black-600;
+    }
+  }
+  &-readonly {
+    background-color: #ececec;
+    color: #2d2d2d;
+    cursor: not-allowed;
+  }
+  &-cancel {
+    background-color: white;
+    color: $primary;
+    border: 1px solid $primary;
+  }
+  &-order {
+    padding: 0;
+    background-color: transparent;
+    border-radius: 0%;
+    border: none;
+    border-bottom: 1px solid #fc6300;
+    margin: 0 auto;
+  }
+}

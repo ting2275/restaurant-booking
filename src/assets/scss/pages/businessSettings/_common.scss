@@ -1,0 +1,556 @@
+@use '../../shared/index' as *;
+@use '../../mixins/mixins' as *;
+
+* {
+  letter-spacing: 0.16em;
+}
+
+.main-box {
+  margin: 36px 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 40px;
+  width: 640px;
+  letter-spacing: 0.16em;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 640px;
+  }
+
+  .hint-box {
+    display: flex;
+    p {
+      align-self: center;
+      margin: 0 0 0 16px;
+      color: $black-900;
+      letter-spacing: 0.16em;
+      span {
+        color: $primary;
+        letter-spacing: 0.16em;
+      }
+    }
+    > button {
+      border-radius: 24px;
+    }
+  }
+
+  span {
+    color: $black-900;
+  }
+  :deep(.btn-secondary) {
+    white-space: nowrap;
+    border-radius: 24px;
+    padding: 8px 16px;
+  }
+}
+
+:deep(.btn-secondary) {
+  white-space: nowrap;
+  border-radius: 24px;
+  padding: 8px 16px;
+}
+
+:deep(.pop-up-card .pop-up-content) {
+  color: red !important;
+}
+
+:deep(.btn-md) {
+  width: 196px;
+  height: 40px;
+}
+
+.trash-button {
+  border: none;
+  background: none;
+}
+
+.save-button-container {
+  display: flex;
+  text-align: center;
+  width: 100%;
+  justify-content: end;
+}
+
+// 取消編輯按鈕
+.edit-buttons-box {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  button {
+    color: $primary;
+    font-size: 16px;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0 20px;
+    cursor: pointer;
+    transition:
+      color 0.1s ease,
+      opacity 0.1s ease;
+  }
+
+  button.active {
+    color: $black-500;
+  }
+
+  button.notActive {
+    opacity: 0;
+  }
+
+  button:not(.notActive) {
+    opacity: 1;
+  }
+}
+
+// 彈窗
+:deep(.pop-up .pop-up-card-titled.md .pop-up-content) {
+  padding: 16px 40px 0 40px !important;
+}
+
+//新增區域彈窗
+:deep(.pop-up .pop-up-card[data-v-7b08185d].pop-up-card-titled.md) {
+  width: 100% !important;
+  max-width: 560px !important;
+}
+
+.edit-view-only {
+  pointer-events: none;
+  color: $black-500 !important;
+}
+
+// 新增區域按鈕
+.add-new-area-box {
+  width: 100%;
+  > button {
+    width: 100%;
+    border: 1px solid $black-500;
+    border-radius: 8px;
+    display: flex;
+    cursor: pointer;
+    outline: none;
+    background-color: white;
+    color: $primary;
+    padding: 22px 24px;
+    outline: none;
+
+    &:focus,
+    &:focus-visible,
+    &:active {
+      border-color: $primary;
+    }
+  }
+  .disabled-btn {
+    color: $black-900;
+    background-color: $black-300;
+    &:focus,
+    &:focus-visible,
+    &:active {
+      border-color: $black-500;
+    }
+  }
+}
+
+// 新增區域彈窗
+.add-area-form {
+  padding: 20px 0;
+
+  .form-group {
+    margin-bottom: 24px;
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #333;
+
+      &.required::after {
+        content: '*';
+        color: #ff4d4f;
+        margin-left: 4px;
+      }
+    }
+  }
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid #e8e8e8;
+}
+
+// 區域列表
+.areas-container {
+  width: 100%;
+  border: 1px solid $black-500;
+  border-radius: 8px;
+  overflow: hidden;
+
+  > div:first-child {
+    max-height: 320px;
+    overflow-y: auto;
+    border-radius: 0 0 8px 8px;
+    @include custom-scrollbar;
+  }
+
+  .area-item {
+    &:nth-child(odd) {
+      background-color: #f9f9f9;
+    }
+    &:nth-child(even) {
+      background-color: #ffffff;
+    }
+
+    // 未編輯狀態
+    .area-normal {
+      display: flex;
+      justify-content: space-between;
+      padding: 16px 24px;
+      cursor: pointer;
+
+      .area-name {
+        align-self: center;
+      }
+
+      .area-info {
+        display: flex;
+        align-items: center;
+
+        .table-icon {
+          width: 32px;
+          height: 32px;
+          margin-right: 8px;
+          filter: brightness(0) saturate(100%) invert(87%) sepia(0%) saturate(0%) hue-rotate(147deg) brightness(87%) contrast(90%);
+        }
+
+        .table-count {
+          color: $black-600;
+          margin: 0 24px 0 0;
+        }
+      }
+    }
+
+    // 編輯狀態
+    .area-edit {
+      display: flex;
+      justify-content: space-between;
+      padding: 0px 24px;
+      height: 64px;
+
+      .drag-handle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-self: center;
+        width: 20px;
+        height: 14px;
+        cursor: move;
+        padding: 2px 0;
+
+        span {
+          display: block;
+          height: 2px;
+          width: 100%;
+          background-color: $black-500;
+          border-radius: 1px;
+        }
+      }
+
+      .area-input {
+        width: 100%;
+        border: 1px solid $black-500;
+        border-radius: 8px;
+        padding: 10px 16px;
+        margin: 12px 24px;
+        outline: none;
+
+        &:focus,
+        &:focus-visible,
+        &:active {
+          border-color: $primary;
+          outline: none;
+          box-shadow: none;
+        }
+      }
+
+      .area-actions {
+        display: flex;
+        align-items: center;
+
+        .table-icon {
+          width: 32px;
+          height: 32px;
+          margin-right: 8px;
+          filter: brightness(0) saturate(100%) invert(87%) sepia(0%) saturate(0%) hue-rotate(147deg) brightness(87%) contrast(90%);
+        }
+
+        .table-count {
+          color: $black-600;
+          margin: 0 24px 0 0;
+        }
+
+        .delete-btn {
+          border-radius: 50%;
+          border: 1px solid $black-500;
+          background-color: white;
+          width: 40px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+
+          img {
+            width: 24px;
+            height: 24px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// 新增區域彈窗
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.popup-container {
+  background: white;
+  border-radius: 8px;
+  width: 100%;
+  // max-width: 560px;
+  max-width: 400px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.popup-header {
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $black-500;
+
+  > p {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .close-button {
+    width: 24px;
+    height: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+:deep(.pop-up-card .pop-up-card-plain .md) {
+  min-height: auto;
+}
+
+.popup-content {
+  padding: 14px 0;
+  .form-group {
+    label {
+      display: block;
+      margin-bottom: 16px;
+      font-size: 14px;
+
+      &.required::before {
+        content: '*';
+        color: #ff0033;
+        margin-right: 4px;
+      }
+    }
+
+    .area-input {
+      width: 100%;
+      height: 40px;
+      padding: 8px 16px;
+      border: 1px solid $black-500;
+      border-radius: 8px;
+      font-size: 14px;
+
+      &::placeholder {
+        color: $black-600;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $primary;
+      }
+    }
+  }
+}
+
+.popup-footer {
+  padding: 16px 24px;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  border-top: 1px solid $black-500;
+}
+
+// 桌型設定彈窗
+// 數量輸入框和控制按鈕的樣式
+.table-content {
+  .form-group {
+    margin-bottom: 24px;
+  }
+  .checkbox-group {
+    margin: 0;
+  }
+}
+
+.number-input {
+  display: flex;
+  align-items: center;
+  border: 1px solid $black-500;
+  border-radius: 8px;
+  overflow: hidden;
+
+  input {
+    flex: 1;
+    height: 40px;
+    border: none;
+    padding: 0 16px;
+    text-align: start;
+    font-size: 14px;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+  // 加減按鈕容器
+  .number-controls {
+    display: flex;
+    border-left: 1px solid $black-500;
+
+    button {
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: white;
+      color: $primary;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:first-child {
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          right: 0;
+          top: 10px;
+          bottom: 10px;
+          width: 1px;
+          background-color: $black-500;
+        }
+      }
+    }
+  }
+}
+
+// 複選框樣式
+.checkbox-group {
+  label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+
+    input[type='checkbox'] {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      width: 16px;
+      height: 16px;
+      border: 1px solid $black-500;
+      border-radius: 4px;
+      cursor: pointer;
+      position: relative;
+
+      // 選中時的樣式
+      &:checked {
+        background-color: $primary;
+        border-color: $primary;
+
+        // 打勾的符號
+        &::after {
+          content: '';
+          position: absolute;
+          left: 5px;
+          top: 2px;
+          width: 4px;
+          height: 8px;
+          border: solid white;
+          border-width: 0 2px 2px 0;
+          transform: rotate(45deg);
+        }
+      }
+    }
+  }
+}
+
+:deep(.pop-up-title) {
+  color: red;
+}
+
+:deep(.pop-up-title) {
+  color: red;
+}
+:deep(.pop-up .pop-up-card .pop-up-footer .buttons-group[data-v-7b08185d] .btn) {
+  color: red;
+}
+.popup-content .input-group {
+  margin-bottom: 24px;
+}
+
+.popup-overlay {
+  z-index: 100;
+}
+
+.table-content {
+  max-height: 269px;
+  overflow-y: auto;
+}
+
+.delete-area-subtitle {
+  margin-bottom: 8px;
+}
+
+.delete-area-content {
+  font-size: 12px;
+}
+
+.error-border {
+  border: 1px solid $wrong !important;
+}

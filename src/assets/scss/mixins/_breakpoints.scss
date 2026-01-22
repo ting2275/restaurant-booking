@@ -1,0 +1,52 @@
+$breakpoints: (
+  'xs': 576px,
+  'sm': 768px,
+  'md': 992px,
+  'md2': 1024px,
+  'lg': 1200px,
+  'xl': 1400px,
+  'xxl': 1600px,
+);
+
+@mixin responsive($width, $type: min, $orientation: null) {
+  @if map_has_key($breakpoints, $width) {
+    $width: map_get($breakpoints, $width);
+    @if $type == max {
+      $width: $width - 0.02px;
+    }
+    @if $orientation != null {
+      @media only screen and (#{$type}-width: $width) and (orientation: $orientation) {
+        @content;
+      }
+      @media only screen and (orientation: $orientation) {
+        @content;
+      }
+    } @else {
+      @media only screen and (#{$type}-width: $width) {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin responsive-between($width, $type: min, $width2, $type2: max, $orientation: null) {
+  @if map_has_key($breakpoints, $width) and map_has_key($breakpoints, $width2) {
+    $width: map_get($breakpoints, $width);
+    $width2: map_get($breakpoints, $width2);
+    @if $type == max {
+      $width: $width - 0.02px;
+    }
+    @if $type2 == max {
+      $width2: $width2 - 0.02px;
+    }
+    @if $orientation != null {
+      @media only screen and (#{$type}-width: $width) and (#{$type2}-width: $width2) and (orientation: $orientation) {
+        @content;
+      }
+    } @else {
+      @media only screen and (#{$type}-width: $width) and (#{$type2}-width: $width2) {
+        @content;
+      }
+    }
+  }
+}

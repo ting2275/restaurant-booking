@@ -1,0 +1,169 @@
+@use '../../shared/index' as *;
+
+.logo {
+  display: flex;
+  justify-content: flex-start;
+  img {
+    height: 32px;
+  }
+}
+.divider {
+  border: none;
+  height: 0;
+  background: none;
+  &.dashed {
+    border-top: 1px dashed $black-500;
+    border-image: repeating-linear-gradient(to right, #cccccc 0 10px, transparent 10px 20px) 24 round;
+  }
+  &.line {
+    border-top: 1px solid $black-500;
+  }
+}
+
+.payment-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $black-400;
+}
+
+.payment-box {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 24px;
+  width: 100%;
+  max-width: 560px;
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+  &-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    .description {
+      text-align: center;
+      @extend .body2;
+    }
+    .total-amount {
+      text-align: center;
+      @extend .headline4;
+    }
+  }
+  &-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+.payment-solution {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .label {
+    @extend .body2;
+    color: $black-900;
+  }
+  .plan {
+    @extend .subtitle;
+  }
+}
+
+.payment-method {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .label {
+    @extend .body2;
+    color: $black-900;
+  }
+  .method-options {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+}
+
+.payment-info {
+  display: flex;
+  justify-content: flex-start;
+  gap: 24px;
+  .label {
+    @extend .body2;
+    flex-basis: 120px;
+  }
+  .info {
+    @extend .subtitle;
+  }
+  .amount {
+    @extend .title;
+  }
+}
+
+.buttons-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  // 繳費單按鈕
+  :deep(.btn-cancel) {
+    color: $black-900;
+    padding: 0 40px 0 16px;
+    min-height: 40px;
+    border-color: $black-500;
+    gap: 40px;
+  }
+}
+
+.required {
+  color: $wrong;
+}
+
+.amount-confirm {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: $black-900;
+
+  .label {
+    @extend .body2;
+  }
+  .amount {
+    @extend .title;
+  }
+}
+
+.confirm-check {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+
+.error-message {
+  color: $wrong;
+  font-size: 12px;
+  margin-top: 4px;
+}
+.form-footer {
+  display: flex;
+  justify-content: space-between;
+
+  .text {
+    font-size: 12px;
+    letter-spacing: 2px;
+
+    p {
+      margin-bottom: 0.5rem;
+    }
+
+    .inline {
+      display: inline-block;
+      margin-right: 2rem;
+    }
+  }
+}

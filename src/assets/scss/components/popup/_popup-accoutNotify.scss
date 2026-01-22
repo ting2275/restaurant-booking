@@ -1,0 +1,19 @@
+@use '../../shared/index' as *;
+
+.pop-up-content > div {
+  max-width: 320px;
+  text-align: center;
+  margin: 10px 0;
+  letter-spacing: 0.1em;
+  padding: 0 10px;
+}
+.dismiss-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.hint-text {
+  color: $primary;
+}

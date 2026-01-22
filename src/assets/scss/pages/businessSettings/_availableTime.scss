@@ -1,0 +1,238 @@
+@use '../../shared/index' as *;
+@use '../../mixins/mixins' as *;
+
+* {
+  letter-spacing: 0.16em;
+  color: $black-900;
+}
+.main-box {
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 36px 64px;
+  gap: 40px;
+  width: 640px;
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 640px;
+  }
+  .hint-box {
+    display: flex;
+    p {
+      align-self: center;
+      margin: 0 0 0 16px;
+      color: $black-900;
+      letter-spacing: 0.16em;
+      span {
+        color: $primary;
+      }
+    }
+  }
+  #eachTime-box {
+    width: 320px;
+  }
+  // 按鈕不要換行
+  :deep(.btn-secondary) {
+    white-space: nowrap;
+    border-radius: 24px;
+    padding: 8px 16px;
+    height: 40px;
+  }
+  :deep(.btn-cancel) {
+    white-space: nowrap;
+  }
+  :deep(.btn-primary-variant) {
+    white-space: nowrap;
+  }
+  :deep(.buttons-box button) {
+    white-space: nowrap;
+    height: 40px;
+  }
+  :deep(.time-slots button) {
+    white-space: nowrap;
+    height: 40px;
+  }
+  :deep(.btn-md) {
+    width: 196px;
+    height: 40px;
+  }
+  :deep(.single-value) {
+    white-space: nowrap;
+    color: $black-900;
+  }
+  :deep(.menu) {
+    color: $black-900;
+  }
+  :deep(.menu-option) {
+    color: $black-900;
+  }
+  //六日改色
+  // :deep(.week-text){
+  //    color: $primary;
+  // }
+  .second-title-box {
+    width: 100%;
+    border-bottom: 1px solid $primary;
+    p {
+      font-size: 14px;
+      color: $black-900;
+      font-weight: 500;
+      line-height: 140%;
+      letter-spacing: 0.16em;
+      padding: 10px 0;
+    }
+  }
+
+  .dropdown-box {
+    display: flex;
+    flex-direction: column;
+    .dropdown-box-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      .dropdown-box-inner-title {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        p {
+          margin: 0;
+          font-size: 14px;
+        }
+        .hint-text {
+          font-size: 12px;
+        }
+      }
+
+      .dropdown-container {
+        display: flex;
+        align-items: center;
+        width: 320px;
+        justify-content: space-between;
+        .dropdown {
+          width: 120px; /* 控制下拉框的寬度 */
+        }
+        span {
+          margin: auto 20px;
+        }
+      }
+    }
+    p {
+      margin: 8px 0 0 0;
+    }
+  }
+}
+
+.time-slots-box {
+  display: grid;
+  grid-template-columns: 80px repeat(7, 1fr);
+
+  width: 640px;
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 640px;
+  }
+  //六日換色
+  :deep(.weekday) {
+    &:nth-child(2),
+    &:last-child {
+      .week-text {
+        color: $primary;
+      }
+    }
+  }
+  // 清除.全選按鈕
+  .buttons-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    button {
+      border-radius: 8px;
+      font-size: 14px;
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 64px;
+    }
+  }
+
+  // 日一二三四五六
+  .weekday {
+    text-align: center;
+    .week-text {
+      height: 40px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 0 10px 0;
+    }
+    .time-slots {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      button {
+        border-radius: 8px;
+        font-size: 14px;
+        padding: 8px 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 64px;
+      }
+    }
+  }
+}
+
+// 儲存按鈕
+.button-box {
+  display: flex;
+  justify-content: end;
+}
+
+// 警告彈窗
+.content-text {
+  text-align: center;
+  font-weight: 500;
+  padding: 0 48px;
+  margin: 10px 0 0 0;
+  font-size: 16px;
+  p {
+    font-weight: 400;
+    text-align: center;
+    margin: 10px 0 0 0;
+    font-size: 14px;
+    width: 304px;
+  }
+}
+
+.check-view-only {
+  background-color: $primary-variant !important;
+  color: #ccc;
+  pointer-events: none;
+}
+.secondary-view-only {
+  color: $primary-variant !important;
+  pointer-events: none;
+}
+.clear-all-view-only {
+  color: $black-500 !important;
+  border: 1px solid $black-500 !important;
+  pointer-events: none;
+}
+.select-all-view-only {
+  color: white !important;
+  background-color: $black-500 !important;
+  pointer-events: none;
+}
+
+:deep(.menu-option.disabled) {
+  color: $black-500 !important;
+  background-color: $black-300 !important;
+  cursor: not-allowed !important;
+}
+
+.unmatch-text {
+  color: $primary;
+}

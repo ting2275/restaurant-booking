@@ -1,0 +1,135 @@
+@use '../../shared/index' as *;
+
+.booking-content{
+  color: $black-900;
+  // margin-bottom: 40px;
+  .available-time, .available-tables{
+    // border-top: 1px solid $black-500;
+    margin-top: 40px;
+    // padding-top: 24px;
+  }
+  hr{
+    display: block;
+    border: none;
+    margin: 24px 0;
+    height: 12px;
+    width: calc(100% + 48px);
+    position: relative;
+    left: -24px;
+    background-color: $black-400;
+  }
+}
+.subtitle {
+  color: $black-900;
+  margin: 24px 0;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  &-time {
+    .btn {
+      // flex: 0 0 calc(33% - 10px);
+      flex: 0 0 calc(20% - 10px);
+      padding: 8px 20px;
+    }
+    // .blank{
+    //   color: $black-400;
+    //   background-color: $black-400;
+    // }
+    .not-open{
+      color: $black-600;
+      background-color: $black-400;
+    }
+  }
+
+  &-party {
+    .btn {
+      flex: 0 0 calc(20% - 10px);
+      padding: 8px 20px;
+    }
+  }
+
+}
+.inputs-group{
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.row {
+  display: grid;
+  gap: 24px;
+
+  &.row-triple {
+    grid-template-columns: 0.8fr 1.2fr 1fr;
+    margin: 24px 0;
+  }
+
+  &.row-double {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  &.row-inline {
+    display: flex;
+    gap: 24px;
+    @extend .body2;
+    .preview-item, .review-item{
+      &:nth-child(1){
+        flex: 160px 0 0;
+      }
+      &:nth-child(2){
+        flex: 80px 0 0;
+      }
+      &:nth-child(3){
+        flex-grow: 1;
+      }
+    }
+  }
+}
+
+.preview-info{
+  margin: 24px 0;
+  .preview-item{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .item-title{
+    flex-basis: 96px;
+    flex-shrink: 0;
+  }
+}
+.review-info{
+  margin: 24px 0 40px;
+  .review-item{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+.warning-box{
+  margin: 16px 0;
+}
+
+label {
+  @extend .body2;
+  display: block;
+  margin-bottom: 16px;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid $black-500;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
+
+  &:disabled {
+    background-color: #f1f1f1;
+  }
+}

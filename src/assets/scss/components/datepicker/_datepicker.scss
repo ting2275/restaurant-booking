@@ -1,0 +1,331 @@
+@use '../../shared/index' as *;
+
+.mx-datepicker {
+  .mx-icon-calendar {
+    // 強制calendar icon不顯示，因為要用客製icon
+    display: none !important;
+  }
+  &.datepicker-button {
+    width: max-content;
+    max-width: 100px;
+    .mx-input {
+      border: none;
+      background-color: transparent;
+      width: 100%;
+      height: 100%;
+      color: $primary;
+      @extend .subtitle;
+      appearance: none;
+      -webkit-appearance: none;
+      box-shadow: none;
+      text-align: center;
+      padding: 8px 0 10px;
+      vertical-align: middle;
+    }
+  }
+  &.datepicker-input, &.datepicker-range {
+    border: none;
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    &:before {
+      content: url(@/assets/images/icons/calender.svg);
+      display: block;
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      @include responsive('md', 'max', 'portrait') {
+        position: relative;
+      }
+    }
+    .mx-input {
+      @extend .body2;
+      border: none;
+      background-color: transparent;
+      width: 100%;
+      height: 100%;
+      appearance: none;
+      -webkit-appearance: none;
+      box-shadow: none;
+      padding: 10px 0;
+      padding-left: 28px;
+      cursor: pointer;
+      &:disabled, &.disabled {
+        color: $black-900;
+        cursor: not-allowed;
+      }
+    }
+    @include responsive('md', 'max', 'portrait') {
+      height: 100%;
+      flex: 1;
+      justify-content: center;
+      .mx-input-wrapper {
+        opacity: 0;
+        position: absolute;
+        width: fit-content;
+        top: 0;
+        left: 0;
+        height: 100%;
+      }
+    }
+  }
+  &.datepicker-input {
+    padding: 0 8px;
+  }
+}
+
+.datepicker-button-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $secondary;
+  color: $primary;
+  box-shadow: 0 1px 4px $primary-variant;
+  border: 0;
+  border-radius: 30px;
+  padding: 0 15px;
+  height: 40px;
+  button.date-nav {
+    position: relative;
+    cursor: pointer;
+    border: none;
+    appearance: none;
+    background: none;
+    color: $primary;
+    z-index: 2;
+    &.lock{
+      pointer-events: none;
+      opacity: .5;
+      filter: grayscale(1);
+    }
+  }
+  &.today-button{
+    font-weight: 500;
+  }
+}
+
+.datepicker-input-box, .datepicker-range-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid $black-500;
+  background: #fff;
+  border-radius: 8px;
+  min-width: 60px;
+  max-width: 100%;
+  height: 40px;
+  &.disabled {
+    background-color: $black-400;
+  }
+  &.is-rounded {
+    border-radius: 30px;
+  }
+  .datepicker-input, .datepicker-range {
+    &.disabled {
+      pointer-events: none;
+      &:before {
+        content: url(@/assets/images/icons/calender-black.svg);
+      }
+    }
+  }
+  @include responsive('md', 'max', 'portrait') {
+    padding: 0;
+  }
+}
+
+.datepicker-range-box {
+  position: relative;
+  width: 100%;
+  max-width: 250px;
+  padding: 0 15px;
+  .datepicker-range {
+    .mx-input-wrapper {
+      flex-grow: 1;
+    }
+    .mx-input {
+      width: 100%;
+      text-align: left;
+      letter-spacing: 0.075em;
+    }
+  }
+}
+
+.datepicker-range-box-trigger {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  cursor: pointer;
+  display: none;
+  &.is-open {
+    display: block;
+  }
+}
+
+// calendar內部樣式
+.mx-calendar-content {
+  height: 100%;
+  .mx-table {
+    thead tr {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+    }
+    &.mx-table-month tr {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      .cell {
+        height: 32px;
+        line-height: 32px;
+        margin: 5px 0;
+      }
+    }
+    &.mx-table-year tr {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      .cell {
+        height: 32px;
+        line-height: 32px;
+        margin: 5px 0;
+      }
+    }
+  }
+  .cell {
+    border-radius: 4px;
+    &.reserved-date{
+      color: $black-900;
+      background-color: transparent;
+      border: 1px solid $primary-variant;
+    }
+    &.unable-date{
+      color: #fff;
+      background-color: $black-500;
+      border: none;
+    }
+    &.disabled{
+      color: $black-500;
+      background-color: transparent;
+      border: none;
+      &:hover, &:focus{
+        color: $black-500;
+        background-color: inherit;
+      }
+    }
+    &.today{
+      color: $primary;
+      background-color: transparent;
+      border: none;
+    }
+    &.active {
+      color: #fff;
+      background-color: $primary;
+      border: none;
+    }
+    &:hover, &:focus, &.hover-in-range, &.in-range {
+      color: $black-900;
+      background-color: $secondary;
+    }
+    &.not-current-month {
+      visibility: hidden;
+    }
+  }
+}
+
+.mx-datepicker-main {
+  color: $black-900;
+  border: none;
+  border-radius: 8px;
+  &.mx-datepicker-popup {
+    box-shadow: 2px 4px 12px rgba(#000, 0.25);
+    margin-top: 8px;
+  }
+}
+
+.mx-datepicker-content {
+  @extend .body2;
+  .mx-calendar {
+    width: 308px;
+    padding: 8px 16px;
+    border: none;
+  }
+  .mx-calendar-header, .mx-time-header {
+    height: 40px;
+    line-height: 40px;
+  }
+  .mx-date-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+  }
+  .mx-table-date td, .mx-table-date th {
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 32px;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  .mx-table-date th {
+    @extend .subtitle;
+  }
+  .mx-table-date td {
+    margin: 4px 0;
+  }
+}
+
+.mx-btn {
+  color: $black-900;
+  &-text {
+    @extend .subtitle;
+    line-height: 40px;
+  }
+  &:hover, &:focus {
+    color: $black-900;
+  }
+}
+
+.mx-btn-icon-left, .mx-btn-icon-double-left,
+.mx-btn-icon-right, .mx-btn-icon-double-right {
+  width: 40px;
+  height: 40px;
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+  i {
+    // font-weight: 700;
+    // color: $primary;
+    display: none;
+  }
+  &:hover, &:focus {
+    i {
+      color: $primary;
+    }
+  }
+}
+.mx-btn-icon{
+  &-left{ background-image: url('@/assets/images/icons/left-arrow.svg'); }
+  &-right{ background-image: url('@/assets/images/icons/right-arrow.svg'); }
+  &-double-left{ background-image: url('@/assets/images/icons/left-arrow-double.svg'); }
+  &-double-right{ background-image: url('@/assets/images/icons/right-arrow-double.svg'); }
+}
+
+.mx-icon-left, .mx-icon-right, .mx-icon-double-left, .mx-icon-double-right {
+  &:before, &:after {
+    width: 12px;
+    height: 12px;
+    border-width: 2.5px 0 0 2.5px;
+  }
+}
+
+.custom-calendar-style {
+  // transform: translateX(-35px);
+  margin-left: -40px;
+}

@@ -1,0 +1,59 @@
+@use '../../shared/index' as *;
+
+.main-box {
+  .info-box {
+    padding: 40px;
+    margin: 0 0 40px 0;
+    background-color: #fff;
+    border-radius: 8px;
+    h4 {
+      color: $black-900;
+      margin: 0 0 24px 0;
+    }
+    .content-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      height: 100px;
+      > div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      .content-title {
+        margin: 0 24px 0 0;
+      }
+      .total-number {
+        @extend .headline5;
+      }
+      img {
+        margin: 0 8px 0 0;
+        width: 24px;
+      }
+    }
+  }
+  .top-box {
+    .btn-export {
+      padding: 10px 16px;
+      width: 63px;
+    }
+  }
+  :deep(.list-content) {
+    span {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    img {
+      width: 24px;
+    }
+    .no-count {
+      @extend .caption;
+      color: $primary;
+    }
+  }
+}
+.btn-download {
+  border: 1px solid $black-500;
+  color: $black-900;
+}

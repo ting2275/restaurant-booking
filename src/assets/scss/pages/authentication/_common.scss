@@ -1,0 +1,176 @@
+@use '../../shared/index' as *;
+
+.login-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 100dvh;
+  padding: 0 30px;
+  @include responsive('md') {
+    padding: 0;
+  }
+}
+
+.login-box-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  margin: 0 auto;
+  padding: 40px 0;
+  height: 100%;
+  .brand {
+    display: flex;
+    justify-content: center;
+    img {
+      width: 220px;
+    }
+  }
+  @include responsive('xs', 'min', 'portrait') {
+    max-width: 430px;
+  }
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 1;
+  gap: 40px;
+  > form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+.login-box-top {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  max-width: 375px;
+  margin: 0 auto;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.register-link {
+  text-align: center;
+}
+
+.copyright {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: $primary;
+  align-items: center;
+}
+
+.login-box-right {
+  display: none;
+  background: linear-gradient(to bottom, $primary-variant 0%, $primary 50%);
+  height: 100%;
+  padding: 40px;
+  text-align: center;
+  @include responsive('md') {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 0 1 50%;
+    gap: 46px;
+    .image {
+      max-inline-size: 418px;
+      aspect-ratio: 418 / 311;
+      transform: translateX(20px);
+    }
+  }
+  @include responsive('lg') {
+    max-width: 50%;
+    .image {
+      max-inline-size: 520px;
+    }
+  }
+  @include responsive('xs', 'min', 'portrait') {
+    display: none;
+  }
+  .title {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: white;
+    h2 {
+      letter-spacing: 0.05em;
+    }
+  }
+}
+
+// 忘記密碼流程
+.forgot-password {
+  &-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: $primary-variant;
+    z-index: 0;
+    &:before {
+      content: '';
+      background-image: url('@/assets/images/resources/password-setting-bg.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+    }
+  }
+  &-box {
+    flex: 1;
+    max-width: 600px;
+    height: 500px;
+    margin: auto;
+    padding: 40px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 4px rgba(#000, 0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    > div:not(.button-group) {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+      gap: 10px;
+    }
+    .box-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex: 1;
+      gap: 24px;
+    }
+    .title {
+      @extend .headline4;
+      margin-bottom: 10px;
+    }
+    p {
+      @extend .body1;
+    }
+  }
+  .button-group {
+    margin-top: 20px;
+  }
+}

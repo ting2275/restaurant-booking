@@ -1,0 +1,273 @@
+@use '../../shared/index' as *;
+
+.main-box {
+  .info-box {
+    padding: 40px;
+    margin: 0 0 40px 0;
+    background-color: #fff;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    .info-box-header {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+
+      h4 {
+        color: $black-900;
+      }
+      .point-number {
+        @extend .headline5;
+        margin: 0 4px;
+      }
+      .info-box-header-right {
+        padding: 8px 16px;
+        background-color: $secondary;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border-radius: 8px;
+        > div {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+        .solution-info {
+          font-size: 10px;
+          text-align: center;
+        }
+      }
+    }
+    .content-box {
+      display: flex;
+      .content-box-left {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding-right: 40px;
+        > div {
+          display: flex;
+          align-items: center;
+          gap: 24px;
+          .remaining-days {
+            @extend .headline3;
+            color: $primary;
+          }
+        }
+      }
+      .progress-container {
+        display: flex;
+        align-items: center;
+        padding-left: 40px;
+        border-left: 1px solid $black-500;
+        .progress-ring {
+          width: 80px;
+          height: 80px;
+          &__background {
+            transition: stroke-dashoffset 0.35s;
+          }
+          &__circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+          }
+          .progress-text {
+            font-size: 10px;
+            text-align: center;
+            font-style: normal;
+            .progress-percent-text {
+              font-size: 16px;
+              font-weight: 500;
+            }
+          }
+        }
+
+        .progress-info {
+          margin-left: 24px;
+          display: flex;
+          gap: 8px;
+          .progress-info-item {
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+
+            .point-number {
+              @extend .headline5;
+            }
+            .over-point {
+              color: $wrong;
+            }
+            .progress-info-label {
+              font-size: 10px;
+              color: $black-600;
+            }
+          }
+          .divider {
+            margin: 5px 0 0 0;
+          }
+        }
+      }
+
+      .total-number {
+        @extend .headline5;
+      }
+      img {
+        margin: 0 8px 0 0;
+        width: 24px;
+      }
+    }
+  }
+  .top-box {
+    .filter-box {
+      .dropdown-status-box {
+        width: 111px;
+        display: none;
+      }
+    }
+  }
+
+  .height-box {
+    // min-height: calc(100dvh - 240px);
+    min-height: auto !important;
+  }
+
+  .list-box {
+    .list-head {
+      > div {
+        white-space: nowrap;
+      }
+    }
+    :deep(.list-head) {
+      border: none;
+    }
+    :deep(.list-content-box) {
+      border: none;
+    }
+    :deep(.list-content) {
+      font-size: 12px;
+      > div {
+        white-space: normal;
+        word-wrap: break-word;
+        p {
+          white-space: normal;
+          word-wrap: break-word;
+          @media screen and (max-width: 768px) {
+            width: 70px;
+          }
+        }
+        .amount-text {
+          white-space: nowrap;
+          @media screen and (max-width: 768px) {
+            span {
+              display: block;
+            }
+          }
+        }
+      }
+      a {
+        text-decoration: none;
+        border-bottom: 1px solid $primary;
+      }
+    }
+  }
+}
+.orderId-box {
+  word-wrap: break-word;
+  white-space: unset;
+  width: 120px;
+  @media screen and (max-width: 992px) {
+    max-width: 95px;
+  }
+  @media screen and (max-width: 768px) {
+    max-width: 70px;
+  }
+}
+.taxNo-box {
+  @media screen and (max-width: 992px) {
+    max-width: 70px;
+  }
+  @media screen and (max-width: 768px) {
+    max-width: 60px;
+  }
+}
+
+:deep(.pagination-box) {
+  > div {
+    color: $black-900;
+  }
+}
+
+:deep(.btn-sm) {
+  padding: 0 !important;
+  background-color: transparent;
+  border-radius: 0% !important;
+  border: none !important;
+  border-bottom: 1px solid $primary !important;
+  margin: 0 auto;
+}
+
+.tabs-box {
+  margin: 8px 0 0 0;
+}
+
+:deep(.tabs-container) {
+  border-bottom: 1px solid #cccccc;
+  display: flex;
+  width: 100%;
+  padding: 0 20px 0 0 !important;
+  margin: 0 0 24px 0;
+  gap: 0px !important;
+  white-space: nowrap;
+}
+
+:deep(.button-box) {
+  padding: 40px 0 24px 0px;
+}
+
+// 年份選擇器
+.custom-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 24px;
+  border: 1px solid $black-500;
+  padding: 4px 16px;
+  height: 40px;
+  cursor: pointer;
+  width: fit-content;
+  user-select: none;
+
+  .calendar-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 2px 4px 12px 0px rgba(0, 0, 0, 0.25);
+    min-width: 100px;
+    z-index: 10;
+    padding: 8px 0;
+    width: 100%;
+
+    .dropdown-item {
+      padding: 10px 24px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.2s;
+      &:hover,
+      &.active {
+        background: $black-300;
+      }
+    }
+  }
+}

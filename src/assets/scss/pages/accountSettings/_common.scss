@@ -1,0 +1,43 @@
+@use '../../shared/index' as *;
+
+:deep(.main-box) {
+  width: 860px;
+  min-height: 510px;
+  color: $black-900;
+  background-color: white;
+  padding: 20px 40px;
+  box-sizing: border-box;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 0 16px 16px 16px;
+
+  h4 {
+    font-size: 24px;
+    font-weight: 700;
+    padding: 20px 40px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid $black-500;
+    position: relative;
+    .prev-btn {
+      position: absolute;
+      top: 50%;
+      left: -5px;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+  }
+
+  .main-container {
+    padding: 20px 40px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .btn-delete {
+    color: $black-900;
+    background-color: white;
+    border: 1px solid $black-500;
+    width: 100px;
+  }
+  @media (max-width: 1024px){
+    width: 608px;
+  }
+}

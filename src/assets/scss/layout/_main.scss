@@ -1,0 +1,15 @@
+@use '../shared/index' as *;
+
+.main-page {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
+
+.bg-gray {
+  background-color: $black-400;
+}
+
+.bg-white {
+  background-color: #ffffff;
+}

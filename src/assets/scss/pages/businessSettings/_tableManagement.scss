@@ -1,0 +1,531 @@
+@use '../../shared/index' as *;
+@use '../../mixins/mixins' as *;
+
+.table-management {
+  position: relative;
+  padding: 40px;
+  margin: 24px auto;
+  background: white;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 864px;
+
+  // 頂部區域
+  .area-name-box {
+    margin: 0 0 24px 0;
+    padding: 0 0 12px 0;
+    border-bottom: 1px solid $black-500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .back-button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      background: none;
+      cursor: pointer;
+
+      img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+    .area-name {
+      font-size: 24px;
+      font-weight: 700;
+    }
+  }
+
+  // 新增桌子按鈕
+  .add-new-table-box {
+    width: 100%;
+    > button {
+      width: 100%;
+      border: 1px solid $black-500;
+      border-radius: 8px;
+      display: flex;
+      cursor: pointer;
+      outline: none;
+      background-color: white;
+      color: $primary;
+      padding: 22px 24px;
+      margin-bottom: 24px;
+      outline: none;
+
+      &:focus,
+      &:focus-visible,
+      &:active {
+        border-color: $primary;
+      }
+    }
+    .disabled-btn {
+      color: $black-900;
+      background-color: $black-300;
+      &:focus,
+      &:focus-visible,
+      &:active {
+        border-color: $black-500;
+      }
+    }
+  }
+
+  // 編輯.取消按鈕
+  .edit-buttons-box {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 40px 0;
+    button {
+      color: $primary;
+      font-size: 16px;
+      background: none;
+      border: none;
+      padding: 0;
+      margin: 0 20px;
+      cursor: pointer;
+      transition:
+        color 0.1s ease,
+        opacity 0.1s ease;
+    }
+    button.active {
+      color: $black-500;
+    }
+    button.notActive {
+      opacity: 0;
+    }
+    button:not(.notActive) {
+      opacity: 1;
+    }
+    .edit-view-only {
+      pointer-events: none;
+      color: $black-500 !important;
+    }
+  }
+
+  // 表格區域
+  .table-list {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: visible;
+    border: 1px solid $black-500;
+
+    .table-header {
+      display: grid;
+      padding: 8px 24px;
+      background-color: #f5f5f5;
+      font-weight: 500;
+      color: #6f6f6f;
+      text-align: start;
+      border-radius: 8px 8px 0 0;
+
+      // 一般模式的網格
+      &:not(.editMode) {
+        grid-template-columns: 7fr 2fr 1fr;
+        gap: 40px;
+      }
+
+      // 編輯模式的網格
+      &.editMode {
+        grid-template-columns: 1fr 7fr 136px 2fr 1fr;
+        gap: 40px;
+        padding: 8px 39px 8px 24px;
+        // white-space: nowrap;
+      }
+    }
+
+    .table-body {
+      overflow-y: auto;
+      max-height: 320px;
+      @include custom-scrollbar;
+
+      :deep(.menu) {
+        z-index: 1000;
+      }
+      > div:first-child {
+        // max-height: 320px;
+        // overflow-y: auto;
+        border-radius: 0 0 8px 8px;
+      }
+      .table-row {
+        display: grid;
+        gap: 40px;
+        padding: 0px 24px;
+        align-items: center;
+        height: 64px;
+
+        // 一般模式
+        &:not(.editMode) {
+          grid-template-columns: 7fr 2fr 1fr;
+        }
+
+        // 編輯模式
+        &.editMode {
+          grid-template-columns: 1fr 7fr 136px 2fr 1fr;
+        }
+
+        &:nth-child(even) {
+          background-color: #f9f9f9;
+        }
+
+        &:last-child {
+          border-radius: 0 0 8px 8px;
+        }
+
+        // 拖曳順序
+        .drag-handle {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-self: center;
+          width: 20px;
+          height: 14px;
+          cursor: move;
+          padding: 2px 0;
+          margin: 0 auto; // 置中顯示
+
+          span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background-color: $black-500;
+            border-radius: 1px;
+          }
+        }
+      }
+    }
+
+    .table-sort {
+      text-align: center;
+    }
+    // 桌號
+    .table-number {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      .table-input {
+        width: 100%;
+        border: 1px solid $black-500;
+        padding: 10px 16px;
+        &:focus,
+        &:focus-visible,
+        &:active {
+          border-color: $primary;
+          outline: none;
+          box-shadow: none;
+        }
+      }
+      .error-border {
+        border: 1px solid $wrong;
+      }
+
+      .table-icon {
+        width: 32px;
+        height: 32px;
+        margin-right: 8px;
+        filter: brightness(0) saturate(100%) invert(87%) sepia(0%) saturate(0%) hue-rotate(147deg) brightness(87%) contrast(90%);
+      }
+    }
+
+    // 打勾按鈕
+    .table-status {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .table-status-input {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 16px;
+        height: 16px;
+        border: 1px solid $black-500;
+        border-radius: 4px;
+        cursor: pointer;
+        position: relative;
+
+        // 選中時的樣式
+        &:checked {
+          background-color: $primary;
+          border-color: $primary;
+
+          // 打勾的符號
+          &::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 2px;
+            width: 4px;
+            height: 8px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+          }
+        }
+      }
+    }
+    // 刪除按鈕
+    .table-actions {
+      text-align: center;
+    }
+    .delete-btn {
+      border-radius: 50%;
+      border: 1px solid $black-500;
+      background-color: white;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      img {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+  .save-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 40px;
+  }
+}
+
+// 新增區域彈窗
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.popup-container {
+  background: white;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 560px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.popup-header {
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $black-500;
+
+  > p {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .close-button {
+    width: 24px;
+    height: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.popup-content {
+  // padding: 24px;
+  .form-group {
+    label {
+      display: block;
+      margin-bottom: 16px;
+      font-size: 14px;
+
+      &.required::before {
+        content: '*';
+        color: #ff0033;
+        margin-right: 4px;
+      }
+    }
+
+    .area-input {
+      width: 100%;
+      height: 40px;
+      padding: 8px 16px;
+      border: 1px solid $black-500;
+      border-radius: 8px;
+      font-size: 14px;
+
+      &::placeholder {
+        color: $black-600;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $primary;
+      }
+    }
+  }
+  .input-group {
+    margin-bottom: 24px;
+  }
+  > .input-group:last-child {
+    margin-bottom: 0;
+    padding-bottom: 34px;
+  }
+}
+
+.popup-footer {
+  padding: 16px 24px;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  border-top: 1px solid $black-500;
+}
+
+// 桌型設定彈窗
+// 數量輸入框和控制按鈕的樣式
+.table-content {
+  max-height: 269px;
+  // overflow-y: auto;
+  .form-group {
+    margin-bottom: 24px;
+  }
+  .checkbox-group {
+    margin: 0;
+  }
+}
+
+.number-input {
+  display: flex;
+  align-items: center;
+  border: 1px solid $black-500;
+  border-radius: 8px;
+  overflow: hidden;
+
+  input {
+    flex: 1;
+    height: 40px;
+    border: none;
+    padding: 0 16px;
+    text-align: start;
+    font-size: 14px;
+
+    &:focus {
+      outline: none;
+    }
+
+    // 移除數字輸入框的上下箭頭
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+  // 加減按鈕容器
+  .number-controls {
+    display: flex;
+    border-left: 1px solid $black-500;
+
+    button {
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: white;
+      color: $primary;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:first-child {
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          right: 0;
+          top: 10px; // 上方預留10px
+          bottom: 10px; // 下方預留10px
+          width: 1px;
+          background-color: $black-500; // 或你想要的顏色
+        }
+      }
+    }
+  }
+}
+
+.error-number-input {
+  border: 1px solid $wrong;
+  .error-number-controls {
+    border-left: 1px solid $wrong;
+  }
+}
+
+// 複選框樣式
+.checkbox-group {
+  label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+
+    input[type='checkbox'] {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      width: 16px;
+      height: 16px;
+      border: 1px solid $black-500;
+      border-radius: 4px;
+      cursor: pointer;
+      position: relative;
+
+      // 選中時的樣式
+      &:checked {
+        background-color: $primary;
+        border-color: $primary;
+
+        // 打勾的符號
+        &::after {
+          content: '';
+          position: absolute;
+          left: 5px;
+          top: 2px;
+          width: 4px;
+          height: 8px;
+          border: solid white;
+          border-width: 0 2px 2px 0;
+          transform: rotate(45deg);
+        }
+      }
+    }
+  }
+}
+
+.main-page > header {
+  z-index: 1100 !important;
+  position: relative;
+}
+
+.error-text {
+  color: $wrong;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.pop-up .pop-up-card.md[data-v-7b08185d] {
+  width: 700px !important;
+}
+
+.input-group.error-border :deep(input) {
+  border: 1px solid $wrong;
+}

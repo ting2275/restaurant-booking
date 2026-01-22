@@ -1,0 +1,8 @@
+@use './shared/index' as *;
+
+@use './layout/header' as *;
+@use './layout/sidebar' as *;
+@use './layout/container' as *;
+@use './layout/main' as *;
+
+@include resetStyle;
